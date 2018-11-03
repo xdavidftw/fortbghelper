@@ -36,6 +36,7 @@ in_voice=[]
 players = {}
 songs = {}
 playing = {}
+
 async def all_false():
     for i in bot.servers:
         playing[i.id]=False
@@ -76,12 +77,6 @@ async def on_ready():
         embed.add_field(name='/rank', value='Използвай /rank за да получиш ранка си според твоето К/Д', inline=False)
 
         await client.send_message(author, embed=embed)
-
-    @client.command(pass_context=True)
-    async def leave(ctx):
-        server = ctx.message.server
-        voice_client = client.voice_client_in(server)
-        await voice_client.disconnect()
 
     @client.command(pass_context=True)
     async def clear(ctx, amount=100):
