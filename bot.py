@@ -122,7 +122,7 @@ async def play(ctx, *,url):
 
     if ctx.message.server.id not in in_voice: #auto join voice if not joined
         channel = ctx.message.author.voice.voice_channel
-        await bot.join_voice_channel(channel)
+        await client.join_voice_channel(channel)
         in_voice.append(ctx.message.server.id)
 
     
@@ -182,7 +182,7 @@ async def leave(ctx):
     pos=in_voice.index(ctx.message.server.id)
     del in_voice[pos]
     server=ctx.message.server
-    voice_client=bot.voice_client_in(server)
+    voice_client=client.voice_client_in(server)
     await voice_client.disconnect()
     songs.clear()
 
