@@ -3,7 +3,7 @@ from discord.ext import commands
 
 TOKEN = 'NTA4MjU0MTUyMzMwMzEzNzQ4.Dr8pnA.WLEee8pebSy_bkR1dbnYrRpUygg'
 
-client = commands.Bot(command_prefix = '.')
+client = commands.Bot(command_prefix = ';')
 client.remove_command('help')
 
 players = {}
@@ -29,12 +29,12 @@ async def on_ready():
         embed.set_author(name='Команди')
         embed.add_field(name='/nick', value='Използвай /nick да си смениш името в сървъра както ти е в Fortnite', inline=False)
         embed.add_field(name='/rank', value='Използвай /rank за да получиш ранка си според твоето К/Д', inline=False)
-        embed.add_field(name=';play', value=';play и линка за песента', inline=False)
-        embed.add_field(name=';pause', value=';pause за пауза', inline=False)
-        embed.add_field(name=';unpause', value=';unpause за ънпауза', inline=False)
-        embed.add_field(name=';leave', value=';leave за премахване на бота от чанела', inline=False)
-        embed.add_field(name=';stop', value=';stop за спиране на бота', inline=False)
-        embed.add_field(name='info', value='MОЛЯ ИЗЧАКВАЙТЕ ВСЯКА ПЕСЕН ДА СВЪРШИ И ТОГАВА ПУСКАЙТЕ НОВАТА С .play', inline=False)
+        embed.add_field(name='.play', value='.play и линка за песента', inline=False)
+        embed.add_field(name='.pause', value='.pause за пауза', inline=False)
+        embed.add_field(name='.unpause', value='.unpause за ънпауза', inline=False)
+        embed.add_field(name='.leave', value='.leave за премахване на бота от чанела', inline=False)
+        embed.add_field(name='.stop', value='.stop за спиране на бота', inline=False)
+        embed.add_field(name='.info', value='MОЛЯ ИЗЧАКВАЙТЕ ВСЯКА ПЕСЕН ДА СВЪРШИ И ТОГАВА ПУСКАЙТЕ НОВАТА С .play', inline=False)
 
         await client.send_message(author, embed=embed)
 
