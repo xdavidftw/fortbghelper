@@ -40,10 +40,11 @@ async def on_ready():
 
             embed.set_author(name='Команди')
             embed.add_field(name='/nick', value='.play и линка за песента', inline=False)
-            embed.add_field(name='/rank', value='..pause за пауза', inline=False)
-            embed.add_field(name='/rank', value='..unpause за ънпауза', inline=False)
-            embed.add_field(name='/rank', value='..leave за премахване на бота от чанела', inline=False)
-            embed.add_field(name='/rank', value='..stop за спиране на бота', inline=False)
+            embed.add_field(name='/rank', value='.pause за пауза', inline=False)
+            embed.add_field(name='/rank', value='.unpause за ънпауза', inline=False)
+            embed.add_field(name='/rank', value='.leave за премахване на бота от чанела', inline=False)
+            embed.add_field(name='/rank', value='.stop за спиране на бота', inline=False)
+            embed.add_field(name='/rank', value='MОЛЯ ИЗЧАКВАЙТЕ ВСЯКА ПЕСЕН ДА СВЪРШИ И ТОГАВА ПУСКАЙТЕ НОВАТА С .play', inline=False)
 
         await client.send_message(author, embed=embed)
 
