@@ -30,6 +30,21 @@ async def on_ready():
         embed.add_field(name='/nick', value='Използвай /nick да си смениш името в сървъра както ти е в Fortnite', inline=False)
         embed.add_field(name='/rank', value='Използвай /rank за да получиш ранка си според твоето К/Д', inline=False)
 
+        @client.command(pass_context=True)
+        async def song(ctx):
+            author = ctx.message.author
+
+            embed = discord.Embed(
+                colour = discord.Colour.orange()
+            )
+
+            embed.set_author(name='Команди')
+            embed.add_field(name='/nick', value='.play и линка за песента', inline=False)
+            embed.add_field(name='/rank', value='..pause за пауза', inline=False)
+            embed.add_field(name='/rank', value='..unpause за ънпауза', inline=False)
+            embed.add_field(name='/rank', value='..leave за премахване на бота от чанела', inline=False)
+            embed.add_field(name='/rank', value='..stop за спиране на бота', inline=False)
+
         await client.send_message(author, embed=embed)
 
     @client.command(pass_context=True)
@@ -40,5 +55,5 @@ async def on_ready():
             messages.append(message)
         await client.delete_messages(messages)
         await client.say('**Избрания брой Съобщения беше изтрит**')
-        
+
 client.run(TOKEN)
