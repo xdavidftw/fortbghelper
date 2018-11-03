@@ -56,12 +56,7 @@ async def checking_voice(ctx):
 @client.event
 async def on_ready():
     await client.change_presence(game=discord.Game(name='.help да видиш всички команди'))
-    print('Bot is Ready.')
-
-    @client.event
-    async def on_ready():
-    bot.loop.create_task(all_false())
-    print(bot.user.name)    
+    print('Bot is Ready.')   
     
     @client.command()
     async def h():
