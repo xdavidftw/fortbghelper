@@ -3,7 +3,7 @@ from discord.ext import commands
 
 TOKEN = 'NTA4MjU0MTUyMzMwMzEzNzQ4.Dr8pnA.WLEee8pebSy_bkR1dbnYrRpUygg'
 
-client = commands.Bot(command_prefix = ';')
+client = commands.Bot(command_prefix = '.')
 client.remove_command('help')
 
 players = {}
