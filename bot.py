@@ -38,7 +38,7 @@ songs = {}
 playing = {}
 
 async def all_false():
-    for i in bot.servers:
+    for i in client.servers:
         playing[i.id]=False
 
 async def checking_voice(ctx):
@@ -48,9 +48,9 @@ async def checking_voice(ctx):
             pos = in_voice.index(ctx.message.server.id)
             del in_voice[pos]
             server = ctx.message.server
-            voice_client = bot.voice_client_in(server)
+            voice_client = client.voice_client_in(server)
             await voice_client.disconnect()
-            await bot.say("{} left because there was no audio playing for a while".format(bot.user.name))
+            await client.say("{} left because there was no audio playing for a while".format(client.user.name))
         except:
             pass
 
@@ -90,7 +90,7 @@ async def on_ready():
 @client.command(pass_context=True)
 async def join(ctx):
     channel = ctx.message.author.voice.voice_channel
-    await bot.join_voice_channel(channel)
+    await client.join_voice_channel(channel)
     in_voice.append(ctx.message.server.id)
 
 
@@ -98,14 +98,14 @@ async def player_in(con):  # After function for music
     try:
         if len(songs[con.message.server.id]) == 0:  # If there is no queue make it False
             playing[con.message.server.id] = False
-            bot.loop.create_task(checking_voice(con))
+            client.loop.create_task(checking_voice(con))
     except:
         pass
     try:
         if len(songs[con.message.server.id]) != 0:  # If queue is not empty
             # if audio is not playing and there is a queue
             songs[con.message.server.id][0].start()  # start it
-            await bot.send_message(con.message.channel, 'Now queueed')
+            await client.send_message(con.message.channel, 'Now queueed')
             del songs[con.message.server.id][0]  # delete list afterwards
     except:
         pass
@@ -128,29 +128,29 @@ async def play(ctx, *,url):
     
 
     if playing[ctx.message.server.id] == True: #IF THERE IS CURRENT AUDIO PLAYING QUEUE IT
-        voice = bot.voice_client_in(ctx.message.server)
-        song = await voice.create_ytdl_player(url, ytdl_options=opts, after=lambda: bot.loop.create_task(player_in(ctx)))
+        voice = client.voice_client_in(ctx.message.server)
+        song = await voice.create_ytdl_player(url, ytdl_options=opts, after=lambda: client.loop.create_task(player_in(ctx)))
         songs[ctx.message.server.id]=[] #make a list 
         songs[ctx.message.server.id].append(song) #add song to queue
-        await bot.say("Audio {} is queued".format(song.title))
+        await client.say("Audio {} is queued".format(song.title))
 
     if playing[ctx.message.server.id] == False:
-        voice = bot.voice_client_in(ctx.message.server)
-        player = await voice.create_ytdl_player(url, ytdl_options=opts, after=lambda: bot.loop.create_task(player_in(ctx)))
+        voice = client.voice_client_in(ctx.message.server)
+        player = await voice.create_ytdl_player(url, ytdl_options=opts, after=lambda: client.loop.create_task(player_in(ctx)))
         players[ctx.message.server.id] = player
         # play_in.append(player)
         if players[ctx.message.server.id].is_live == True:
-            await bot.say("Can not play live audio yet.")
+            await client.say("Can not play live audio yet.")
         elif players[ctx.message.server.id].is_live == False:
             player.start()
-            await bot.say("Now playing audio")
+            await client.say("Now playing audio")
             playing[ctx.message.server.id] = True
 
 
 
 @client.command(pass_context=True)
 async def queue(con):
-    await bot.say("There are currently {} audios in queue".format(len(songs)))
+    await client.say("There are currently {} audios in queue".format(len(songs)))
 
 @client.command(pass_context=True)
 async def pause(ctx):
