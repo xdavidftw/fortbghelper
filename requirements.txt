@@ -1,3 +1,4 @@
-discord.py
-discord.py[Voice]
-youtube_dl
+discord
+asyncio
+youtube-dl
+PyNaCl
